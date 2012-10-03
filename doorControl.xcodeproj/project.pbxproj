@@ -23,6 +23,7 @@
 		CE159AFB1614A670005CAB53 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE159AFA1614A670005CAB53 /* SecondViewController.m */; };
 		CE159AFD1614A670005CAB53 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = CE159AFC1614A670005CAB53 /* second.png */; };
 		CE159AFF1614A670005CAB53 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE159AFE1614A670005CAB53 /* second@2x.png */; };
+		CEF3B096161BA87A00D44378 /* NSMutableURLRequest+sendPost.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B095161BA87A00D44378 /* NSMutableURLRequest+sendPost.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,8 @@
 		CE159AFA1614A670005CAB53 /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
 		CE159AFC1614A670005CAB53 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		CE159AFE1614A670005CAB53 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
+		CEF3B094161BA87A00D44378 /* NSMutableURLRequest+sendPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+sendPost.h"; sourceTree = "<group>"; };
+		CEF3B095161BA87A00D44378 /* NSMutableURLRequest+sendPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+sendPost.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +99,8 @@
 			children = (
 				CE159AE61614A670005CAB53 /* AppDelegate.h */,
 				CE159AE71614A670005CAB53 /* AppDelegate.m */,
+				CEF3B094161BA87A00D44378 /* NSMutableURLRequest+sendPost.h */,
+				CEF3B095161BA87A00D44378 /* NSMutableURLRequest+sendPost.m */,
 				CE159AEF1614A670005CAB53 /* MainStoryboard.storyboard */,
 				CE159AF21614A670005CAB53 /* FirstViewController.h */,
 				CE159AF31614A670005CAB53 /* FirstViewController.m */,
@@ -198,6 +203,7 @@
 				CE159AE81614A670005CAB53 /* AppDelegate.m in Sources */,
 				CE159AF41614A670005CAB53 /* FirstViewController.m in Sources */,
 				CE159AFB1614A670005CAB53 /* SecondViewController.m in Sources */,
+				CEF3B096161BA87A00D44378 /* NSMutableURLRequest+sendPost.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-
+#import "NSMutableURLRequest+sendPost.h"
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -50,9 +50,22 @@
 }
 - (void)application:(UIApplication*)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData*)deviceToken
 {
-	//NSLog(@"My token is: %@", deviceToken);
-    //something here to upload the token to our server...
+    NSString *appid = [[NSBundle mainBundle] bundleIdentifier];
     
+    NSString *_deviceToken = [deviceToken description];
+    _deviceToken =  [_deviceToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
+    _deviceToken = [_deviceToken stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    
+    
+	NSLog(@"My token for %@ is: %@", appid, _deviceToken);
+    //something here to upload the token to our server...
+    //check if we sent the token, so we're not sending it ever time...and possilby haning at activate
+    //also this kind of post thing, might be best severed as a category
+    NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
+    NSString *postString = [NSString stringWithFormat:@"devid=%@&appid=%@", _deviceToken, appid];
+    [postRequest sendPost:@"http://www.theroyalwe.net/doorlock/registerDevice.php" :postString delegate:nil];
+
     
     
     
