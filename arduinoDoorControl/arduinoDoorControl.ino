@@ -30,7 +30,7 @@ void unlock(){
   lockState = false;
   digitalWrite(redLed,LOW);
   digitalWrite(greenLed, HIGH); 
-  Serial.println("unlocked");
+  //Serial.println("unlocked");
   Serial.print("lockState:");
   if(lockState){
   Serial.println("true");
@@ -52,7 +52,7 @@ void lock(){
  lockState = true; 
   digitalWrite(greenLed, LOW);
   digitalWrite(redLed, HIGH);
-  Serial.println("locked");
+  //Serial.println("locked");
   Serial.print("lockState:");
   if(lockState){
   Serial.println("true");
@@ -123,12 +123,13 @@ boolean tagPassed = false;
  
 while(Serial.available()) {
   val = Serial.read();
-  Serial.println(val);
+  //Serial.println(val);
   delay(200);
   
-  
-  if(val == '.'){
-    Serial.println(".");
+  if (val == 'e'){
+   Serial.println("exit"); 
+  }else if(val == '.'){
+    //Serial.println(".");
      lockToggle();
   }else if(val == 'U'){
     //Serial.println("unlocking via remote command");
@@ -138,9 +139,9 @@ while(Serial.available()) {
       lock();
   }else if(val == '?'){
       if(lockState){
-        Serial.println("locked");
+        Serial.println("lockstate:true");
       }else{
-        Serial.println("unlocked");
+        Serial.println("lockstate:false");
       }
     
   }
