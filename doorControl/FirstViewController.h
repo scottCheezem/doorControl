@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface FirstViewController : UIViewController
+- (IBAction)lockToggleButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UIButton *lockToggleButtonText;
 
 @end

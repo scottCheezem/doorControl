@@ -64,7 +64,7 @@
     //also this kind of post thing, might be best severed as a category
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
     NSString *postString = [NSString stringWithFormat:@"devid=%@&appid=%@", _deviceToken, appid];
-    [postRequest sendPost:@"http://www.theroyalwe.net/doorlock/registerDevice.php" :postString delegate:nil];
+    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/registerDevice.php" :postString delegate:nil];
 
     
     

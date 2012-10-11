@@ -14,6 +14,8 @@
 
 @implementation FirstViewController
 
+@synthesize lockToggleButtonText;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -26,4 +28,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)lockToggleButton:(id)sender {
+    //send post to doorlock api...
+    
+    //part of datarecieved delegate will deal with 
+}
 @end
