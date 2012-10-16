@@ -112,13 +112,8 @@ void loop(){
    
   
   
- byte i = 0;
+
  byte val = 0;
- byte code[6];
- byte checksum = 0;
- byte bytesread = 0;
- byte tempbyte = 0;
-boolean tagPassed = false;
  
  
 while(Serial.available()) {
