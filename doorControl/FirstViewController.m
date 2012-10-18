@@ -7,6 +7,7 @@
 //
 
 #import "FirstViewController.h"
+#import "NSMutableURLRequest+sendPost.h"
 
 @interface FirstViewController ()
 
@@ -30,6 +31,12 @@
 
 - (IBAction)lockToggleButton:(id)sender {
     //send post to doorlock api...
+    
+    NSString *toggle = @"t";
+    NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
+    NSString *postString = [NSString stringWithFormat:@"c=%@&", toggle];
+    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/index.php" :postString delegate:nil];
+    
     
     //part of datarecieved delegate will deal with 
 }
