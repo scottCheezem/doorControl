@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "NSMutableURLRequest+sendPost.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -66,6 +67,8 @@
     NSString *postString = [NSString stringWithFormat:@"devid=%@&appid=%@", _deviceToken, appid];
     [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/registerDevice.php" :postString delegate:nil];
 
+    
+    
     
     
     

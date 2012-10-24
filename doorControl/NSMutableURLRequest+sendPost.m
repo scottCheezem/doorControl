@@ -13,7 +13,7 @@
     
     NSURL *url = [[NSURL alloc]initWithString:urlString];
     
-    NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]initWithURL:url];
+    NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]initWithURL:url ];
     if(postString){
         NSLog(@"postString is %@", postString);
         [postRequest setHTTPMethod:@"POST"];
@@ -23,6 +23,7 @@
         postRequest.timeoutInterval = 10;
         
     }
+
     NSLog(@"sending device id request %@", postRequest);
     [[NSURLConnection alloc]initWithRequest:postRequest delegate:delegate];
 }

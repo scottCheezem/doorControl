@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FirstViewController : UIViewController
-- (IBAction)lockToggleButton:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *lockToggleButtonText;
+@interface FirstViewController : UIViewController{
+    NSMutableData *recievedData;
+
+}
+- (IBAction)lockToggleSwitchAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UISwitch *lockToggleSwitchOutlet;
 
 @end
