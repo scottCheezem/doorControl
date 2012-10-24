@@ -21,7 +21,9 @@
 {
     [super viewDidLoad];
     recievedData = [[NSMutableData alloc]init];
-
+    
+    NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
+    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/" :nil delegate:self];
     
 }
 
@@ -33,6 +35,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    NSLog(@"view will appear");
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
     [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/" :nil delegate:self];
     

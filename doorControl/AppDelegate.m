@@ -58,13 +58,18 @@
     _deviceToken = [_deviceToken stringByReplacingOccurrencesOfString:@" " withString:@""];
     
     
+    //can I get the user specified name of the device?
+    NSString *deviceName = [[UIDevice currentDevice] name];
     
-	NSLog(@"My token for %@ is: %@", appid, _deviceToken);
+    
+    
+    
+	NSLog(@"%@ token for %@ is: %@", deviceName, appid, _deviceToken);
     //something here to upload the token to our server...
     //check if we sent the token, so we're not sending it ever time...and possilby haning at activate
     //also this kind of post thing, might be best severed as a category
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
-    NSString *postString = [NSString stringWithFormat:@"devid=%@&appid=%@", _deviceToken, appid];
+    NSString *postString = [NSString stringWithFormat:@"devid=%@&appid=%@&devname=%@", _deviceToken, appid, deviceName];
     [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/registerDevice.php" :postString delegate:nil];
 
     
