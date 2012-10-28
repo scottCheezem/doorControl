@@ -12,6 +12,8 @@
     NSMutableData *recievedData;
 
 }
+
+-(void)processesMessage:(NSDictionary *)pushInfo;
 - (IBAction)lockToggleSwitchAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UISwitch *lockToggleSwitchOutlet;
 

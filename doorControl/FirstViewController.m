@@ -8,6 +8,7 @@
 
 #import "FirstViewController.h"
 #import "NSMutableURLRequest+sendPost.h"
+#import "UserSettings.h"
 
 @interface FirstViewController ()
 
@@ -22,8 +23,8 @@
     [super viewDidLoad];
     recievedData = [[NSMutableData alloc]init];
     
-    NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
-    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/" :nil delegate:self];
+//    NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
+//    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/" :nil delegate:self];
     
 }
 
@@ -52,9 +53,13 @@
         command = @"u";
     }
     
+    
+    //later this will be something more secure...like a salted hash of some auth string...
+    NSString *myDeviceToken = [[UserSettings userSettings]deviceToken];
+    
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
     //[postRequest setTimeoutInterval:30];
-    NSString *postString = [NSString stringWithFormat:@"c=%@", command];
+    NSString *postString = [NSString stringWithFormat:@"c=%@&devToken=%@", command, myDeviceToken];
     [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/index.php" :postString delegate:self];
     
     
@@ -97,11 +102,25 @@
         self.lockToggleSwitchOutlet.on = true;
     }
     
+    //clear recievedData so its ready for next toggle....
     recievedData = [[NSMutableData alloc]init];
     
     
 }
 
-
+-(void)processesMessage:(NSDictionary *)pushInfo{
+    NSLog(@"processing info : %@", pushInfo);
+    
+    NSDictionary *extra = [pushInfo objectForKey:@"extra"];
+    
+    NSString *lockState = [extra objectForKey:@"lockstate"];
+    
+    if([lockState isEqualToString:@"false"]){
+        lockToggleSwitchOutlet.on = false;
+    }else if([lockState isEqualToString:@"true"]){
+        lockToggleSwitchOutlet.on = true;
+    }
+    
+}
 
 @end

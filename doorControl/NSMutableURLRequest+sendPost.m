@@ -24,7 +24,7 @@
         
     }
 
-    NSLog(@"sending device id request %@", postRequest);
+    NSLog(@"sending post %@", postRequest);
     [[NSURLConnection alloc]initWithRequest:postRequest delegate:delegate];
 }
 @end

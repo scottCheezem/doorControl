@@ -7,7 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "UserSettings.h"
 #import "NSMutableURLRequest+sendPost.h"
+#import "FirstViewController.h"
 
 @implementation AppDelegate
 
@@ -22,7 +24,16 @@
     
     return YES;
 }
-							
+
+
+-(void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    NSLog(@"got notification");
+    FirstViewController *fc = [((UITabBarController*)self.window.rootViewController).viewControllers objectAtIndex:0];
+    
+    [fc processesMessage:userInfo];
+    
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -56,13 +67,14 @@
     NSString *_deviceToken = [deviceToken description];
     _deviceToken =  [_deviceToken stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"<>"]];
     _deviceToken = [_deviceToken stringByReplacingOccurrencesOfString:@" " withString:@""];
-    
+    //set in userDefautls?
     
     //can I get the user specified name of the device?
     NSString *deviceName = [[UIDevice currentDevice] name];
     
     
-    
+    [[UserSettings userSettings]setDeviceName:deviceName];
+    [[UserSettings userSettings]setDeviceToken:_deviceToken];
     
 	NSLog(@"%@ token for %@ is: %@", deviceName, appid, _deviceToken);
     //something here to upload the token to our server...
