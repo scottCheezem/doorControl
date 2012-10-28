@@ -9,7 +9,7 @@
 #import "UserSettings.h"
 
 @implementation UserSettings
-@synthesize deviceName, deviceToken;
+//@synthesize deviceName, deviceToken;
 
 
 -(id)init{
@@ -19,9 +19,10 @@
         
         
         deviceName = [defaults stringForKey:@"devName"];
-        if(deviceToken == nil) {
+        if(deviceName == nil) {
             deviceName = [[NSString alloc]init];
         }
+        
         deviceToken = [defaults stringForKey:@"devToken"];
         if(deviceToken == nil){
             deviceToken = [[NSString alloc]init];
@@ -34,19 +35,30 @@
 
 
 
--(void)setDeviceName:(NSString *)deviceName{
+-(void)setDeviceName:(NSString *)_deviceName{
 
-    [defaults setObject:deviceName forKey:@"devName"];
+    [defaults setObject:_deviceName forKey:@"devName"];
+    //self.deviceName = _deviceName;
     
     
 }
 
 
--(void)setDeviceToken:(NSString *)deviceToken{
-    [defaults setObject:deviceToken forKey:@"devToken"];
+-(void)setDeviceToken:(NSString *)_deviceToken{
+    [defaults setObject:_deviceToken forKey:@"devToken"];
+    //self.deviceToken = _deviceToken;
     
 }
 
+-(NSString*)deviceToken{
+    
+    return [defaults objectForKey:@"devToken"];
+    
+}
+
+-(NSString*)deviceName{
+    return [defaults objectForKey:@"devName"];
+}
 
 
 +(UserSettings*)userSettings{
