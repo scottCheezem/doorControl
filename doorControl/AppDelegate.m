@@ -49,6 +49,12 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    FirstViewController *fc = [((UITabBarController*)self.window.rootViewController).viewControllers objectAtIndex:0];
+    
+    NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
+    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/" :nil delegate:fc];
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
