@@ -17,14 +17,14 @@
 @implementation FirstViewController
 
 @synthesize lockToggleSwitchOutlet;
+@synthesize locktop;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     recievedData = [[NSMutableData alloc]init];
     
-//    NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
-//    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/" :nil delegate:self];
+    
     
 }
 
@@ -43,15 +43,32 @@
     
 }
 
-- (IBAction)lockToggleSwitchAction:(id)sender {
+- (IBAction)LockToggleAction:(id)sender {
+    
+    //ok just track a boolen...probably by extending the button class...
+    
+    self.lockToggleSwitchOutlet.on = !self.lockToggleSwitchOutlet.on;
+    
+    NSLog(@"toggleState is %d", self.lockToggleSwitchOutlet.on);
+    
+    
+    
     
     
     NSString *command;
-    if(lockToggleSwitchOutlet.on){
+    if(self.lockToggleSwitchOutlet.on){
+        [self showLocked];
         command = @"l";
     }else{
         command = @"u";
+        [self showUnlocked];
+
     }
+    
+
+    
+    
+    
     
     
     //later this will be something more secure...like a salted hash of some auth string...
@@ -60,7 +77,7 @@
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
     //[postRequest setTimeoutInterval:30];
     NSString *postString = [NSString stringWithFormat:@"c=%@&devToken=%@", command, myDeviceToken];
-    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/index.php" :postString delegate:self];
+    //[postRequest sendPost:@"http://doorcontrol.theroyalwe.net/index.php" :postString delegate:self];
     
     
     
@@ -95,10 +112,15 @@
     if(err){
         NSLog(@"thrr was err: %@", err);
     }
-    NSString *lockState = [jsonResponse objectForKey:@"lockstate"];
-    if([lockState isEqualToString:@"false"]){
+    NSString *postedLockState = [jsonResponse objectForKey:@"lockstate"];
+    
+    //this will need to be fixed...move to a toggle lock type thingie...
+    
+    
+
+    if([postedLockState isEqualToString:@"false"]){
         self.lockToggleSwitchOutlet.on = false;
-    }else if([lockState isEqualToString:@"true"]){
+    }else if([postedLockState isEqualToString:@"true"]){
         self.lockToggleSwitchOutlet.on = true;
     }
     
@@ -115,6 +137,7 @@
     
     NSString *lockState = [extra objectForKey:@"lockstate"];
     
+
     if([lockState isEqualToString:@"false"]){
         lockToggleSwitchOutlet.on = false;
     }else if([lockState isEqualToString:@"true"]){
@@ -122,5 +145,60 @@
     }
     
 }
+
+
+
+
+
+-(void)showLocked{
+
+    
+
+    locktop.layer.anchorPoint = CGPointMake(0.0f, 0.5f);
+    locktop.layer.position = CGPointMake(locktop.bounds.size.width, locktop.bounds.size.height*1.8);
+
+    NSLog(@"dim %f, %f", locktop.bounds.size.width, locktop.bounds.size.height);
+    
+    [UIView animateWithDuration:1 animations:^{
+        CATransform3D t = CATransform3DIdentity;
+        
+        t = CATransform3DRotate(t, M_PI, 0.0f, 1.0f, 0.0f);
+
+        locktop.layer.transform = t;
+
+//        locktop.layer.transform = CATransform3DIdentity;
+
+        
+
+    }];
+    
+}
+
+-(void)showUnlocked{
+    
+    
+    
+    locktop.layer.anchorPoint = CGPointMake(0.0f, 0.5f);
+    locktop.layer.position = CGPointMake(locktop.bounds.size.width, locktop.bounds.size.height*1.8);
+    
+    NSLog(@"dim %f, %f", locktop.bounds.size.width, locktop.bounds.size.height);
+    
+    [UIView animateWithDuration:1 animations:^{
+        CATransform3D t = CATransform3DIdentity;
+        
+        t = CATransform3DRotate(t, M_PI, 0.0f, 0.0f, 0.0f);
+        
+        locktop.layer.transform = t;
+        
+        //        locktop.layer.transform = CATransform3DIdentity;
+        
+        
+        
+    }];
+    
+}
+
+
+
 
 @end

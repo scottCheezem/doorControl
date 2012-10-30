@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import "LockToggleButton.h"
 
 @interface FirstViewController : UIViewController{
     NSMutableData *recievedData;
@@ -14,7 +16,16 @@
 }
 
 -(void)processesMessage:(NSDictionary *)pushInfo;
-- (IBAction)lockToggleSwitchAction:(id)sender;
-@property (weak, nonatomic) IBOutlet UISwitch *lockToggleSwitchOutlet;
+
+
+- (IBAction)LockToggleAction:(id)sender;
+
+
+
+@property (weak, nonatomic) IBOutlet UIImageView *locktop;
+
+@property (weak, nonatomic) IBOutlet LockToggleButton *lockToggleSwitchOutlet;
+
+
 
 @end
