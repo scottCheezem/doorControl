@@ -8,23 +8,26 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "LockToggleButton.h"
+#import "NSMutableURLRequest+sendPost.h"
+#import "UserSettings.h"
+
 
 @interface FirstViewController : UIViewController{
     NSMutableData *recievedData;
-
+    BOOL isLocked;
 }
 
 -(void)processesMessage:(NSDictionary *)pushInfo;
 
+@property (weak, nonatomic) IBOutlet UIImageView *locktop;
 
 - (IBAction)LockToggleAction:(id)sender;
 
 
 
-@property (weak, nonatomic) IBOutlet UIImageView *locktop;
 
-@property (weak, nonatomic) IBOutlet LockToggleButton *lockToggleSwitchOutlet;
+
+
 
 
 

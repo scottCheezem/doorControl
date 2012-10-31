@@ -7,8 +7,6 @@
 //
 
 #import "FirstViewController.h"
-#import "NSMutableURLRequest+sendPost.h"
-#import "UserSettings.h"
 
 @interface FirstViewController ()
 
@@ -16,8 +14,8 @@
 
 @implementation FirstViewController
 
-@synthesize lockToggleSwitchOutlet;
 @synthesize locktop;
+
 
 - (void)viewDidLoad
 {
@@ -47,16 +45,13 @@
     
     //ok just track a boolen...probably by extending the button class...
     
-    self.lockToggleSwitchOutlet.on = !self.lockToggleSwitchOutlet.on;
+    isLocked = !isLocked;
     
-    NSLog(@"toggleState is %d", self.lockToggleSwitchOutlet.on);
-    
-    
-    
+    NSLog(@"toggleState is %d", isLocked);
     
     
     NSString *command;
-    if(self.lockToggleSwitchOutlet.on){
+    if(isLocked){
         [self showLocked];
         command = @"l";
     }else{
@@ -67,17 +62,13 @@
     
 
     
-    
-    
-    
-    
     //later this will be something more secure...like a salted hash of some auth string...
     NSString *myDeviceToken = [[UserSettings userSettings]deviceToken];
     
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
     //[postRequest setTimeoutInterval:30];
     NSString *postString = [NSString stringWithFormat:@"c=%@&devToken=%@", command, myDeviceToken];
-    //[postRequest sendPost:@"http://doorcontrol.theroyalwe.net/index.php" :postString delegate:self];
+    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/index.php" :postString delegate:self];
     
     
     
@@ -86,7 +77,7 @@
 
 
 //methods for dealing with returned lockstate response...
-
+/*
 -(void)connection:(NSURLConnection*)connection didFailWithError:(NSError *)error{
     
     NSLog(@"Error %@ when connecting", error);
@@ -146,42 +137,45 @@
     
 }
 
-
-
+*/
 
 
 -(void)showLocked{
-
     
-
-    locktop.layer.anchorPoint = CGPointMake(0.0f, 0.5f);
-    locktop.layer.position = CGPointMake(locktop.bounds.size.width, locktop.bounds.size.height*1.8);
-
-    NSLog(@"dim %f, %f", locktop.bounds.size.width, locktop.bounds.size.height);
+    NSLog(@"Locked position : %f, %f", locktop.layer.position.x, locktop.layer.position.y);
+    NSLog(@"Locked anchor: %f, %f", locktop.layer.anchorPoint.x, locktop.layer.anchorPoint.y);
+    
+    
+    //locktop.layer.bounds = CGRectMake(0, 0, locktop.layer.bounds.size.width+100, locktop.layer.bounds.size.height);
+    locktop.layer.anchorPoint = CGPointMake(0.120f, 0.5f);
+    locktop.layer.position = CGPointMake(117, 177);
+    
+//    NSLog(@"dim %f, %f", locktop.bounds.size.width, locktop.bounds.size.height);
     
     [UIView animateWithDuration:1 animations:^{
         CATransform3D t = CATransform3DIdentity;
         
         t = CATransform3DRotate(t, M_PI, 0.0f, 1.0f, 0.0f);
-
-        locktop.layer.transform = t;
-
-//        locktop.layer.transform = CATransform3DIdentity;
-
         
-
+        locktop.layer.transform = t;
+        
+        //        locktop.layer.transform = CATransform3DIdentity;
+        
+        
+        
     }];
     
 }
 
 -(void)showUnlocked{
     
+    NSLog(@"unLocked position : %f, %f", locktop.layer.position.x, locktop.layer.position.y);
+    NSLog(@"unlocked anchor: %f, %f", locktop.layer.anchorPoint.x, locktop.layer.anchorPoint.y);
     
+    locktop.layer.anchorPoint = CGPointMake(0.120f, 0.5f);
+    locktop.layer.position = CGPointMake(119,177);
     
-    locktop.layer.anchorPoint = CGPointMake(0.0f, 0.5f);
-    locktop.layer.position = CGPointMake(locktop.bounds.size.width, locktop.bounds.size.height*1.8);
-    
-    NSLog(@"dim %f, %f", locktop.bounds.size.width, locktop.bounds.size.height);
+//    NSLog(@"dim %f, %f", locktop.bounds.size.width, locktop.bounds.size.height);
     
     [UIView animateWithDuration:1 animations:^{
         CATransform3D t = CATransform3DIdentity;
@@ -197,8 +191,6 @@
     }];
     
 }
-
-
 
 
 @end
