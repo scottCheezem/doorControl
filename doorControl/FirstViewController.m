@@ -145,8 +145,10 @@
 
     if([lockState isEqualToString:@"false"]){
         self.LockButtonOutlet.on = false;
+        [self showUnlocked];
     }else if([lockState isEqualToString:@"true"]){
         self.LockButtonOutlet.on = true;
+        [self showLocked];
     }
     
 }
