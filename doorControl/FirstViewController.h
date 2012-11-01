@@ -10,11 +10,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import "NSMutableURLRequest+sendPost.h"
 #import "UserSettings.h"
+#import "LockButton.h"
 
 
 @interface FirstViewController : UIViewController{
     NSMutableData *recievedData;
-    BOOL isLocked;
 }
 
 -(void)processesMessage:(NSDictionary *)pushInfo;
@@ -22,9 +22,12 @@
 @property (weak, nonatomic) IBOutlet UIView *locktop;
 
 
-- (IBAction)LockToggleAction:(id)sender;
 
 
+- (IBAction)LockButtonAction:(id)sender;
+
+
+@property (weak, nonatomic) IBOutlet LockButton *LockButtonOutlet;
 
 
 

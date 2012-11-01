@@ -15,7 +15,7 @@
 @implementation FirstViewController
 
 @synthesize locktop;
-
+@synthesize LockButtonOutlet;
 
 - (void)viewDidLoad
 {
@@ -25,6 +25,18 @@
     
     
 }
+
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    if(self.LockButtonOutlet.on){
+        [self showLocked];
+    }else{
+        [self showUnlocked];
+    }
+
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -41,17 +53,17 @@
     
 }
 
-- (IBAction)LockToggleAction:(id)sender {
+- (IBAction)LockButtonAction:(id)sender{
     
     //ok just track a boolen...probably by extending the button class...
     
-    isLocked = !isLocked;
     
-    NSLog(@"toggleState is %d", isLocked);
+    
+    NSLog(@"toggleState is %d", self.LockButtonOutlet.on);
     
     
     NSString *command;
-    if(isLocked){
+    if(self.LockButtonOutlet.on){
         [self showLocked];
         command = @"l";
     }else{
@@ -77,7 +89,7 @@
 
 
 //methods for dealing with returned lockstate response...
-/*
+
 -(void)connection:(NSURLConnection*)connection didFailWithError:(NSError *)error{
     
     NSLog(@"Error %@ when connecting", error);
@@ -110,9 +122,11 @@
     
 
     if([postedLockState isEqualToString:@"false"]){
-        self.lockToggleSwitchOutlet.on = false;
+        self.LockButtonOutlet.on = false;
+        [self showUnlocked];
     }else if([postedLockState isEqualToString:@"true"]){
-        self.lockToggleSwitchOutlet.on = true;
+        self.LockButtonOutlet.on = true;
+        [self showLocked];
     }
     
     //clear recievedData so its ready for next toggle....
@@ -130,32 +144,23 @@
     
 
     if([lockState isEqualToString:@"false"]){
-        lockToggleSwitchOutlet.on = false;
+        self.LockButtonOutlet.on = false;
     }else if([lockState isEqualToString:@"true"]){
-        lockToggleSwitchOutlet.on = true;
+        self.LockButtonOutlet.on = true;
     }
     
 }
 
-*/
 
 
--(void)showLocked{
-    
-    NSLog(@"Locked position : %f, %f", locktop.layer.position.x, locktop.layer.position.y);
-    NSLog(@"Locked anchor: %f, %f", locktop.layer.anchorPoint.x, locktop.layer.anchorPoint.y);
-    
-    
-    
 
+-(void)showUnlocked{
     
+       
     locktop.layer.masksToBounds = NO;
-    //locktop.layer.anchorPoint = CGPointMake(0.120f, 0.5f);
     locktop.layer.anchorPoint = CGPointMake(0.0f, 0.5f);
     locktop.layer.position = CGPointMake(117, 176);
 
-
-//    NSLog(@"dim %f, %f", locktop.bounds.size.width, locktop.bounds.size.height);
     
     [UIView animateWithDuration:1 animations:^{
         CATransform3D t = CATransform3DIdentity;
@@ -164,22 +169,15 @@
         
         locktop.layer.transform = t;
         
-
-        
-        
-        
     }];
     
 }
 
--(void)showUnlocked{
+-(void)showLocked{
     
-    NSLog(@"unLocked position : %f, %f", locktop.layer.position.x, locktop.layer.position.y);
-    NSLog(@"unlocked anchor: %f, %f", locktop.layer.anchorPoint.x, locktop.layer.anchorPoint.y);
+  
     
-    
-        locktop.layer.masksToBounds = NO;
-    //locktop.layer.anchorPoint = CGPointMake(0.120f, 0.5f);
+    locktop.layer.masksToBounds = NO;
     locktop.layer.anchorPoint = CGPointMake(0.0f, 0.5f);
     locktop.layer.position = CGPointMake(117,176);
     
@@ -196,6 +194,7 @@
     }];
     
 }
+
 
 
 @end
