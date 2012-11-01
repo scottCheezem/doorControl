@@ -7,8 +7,6 @@
 //
 
 #import "FirstViewController.h"
-#import "NSMutableURLRequest+sendPost.h"
-#import "UserSettings.h"
 
 @interface FirstViewController ()
 
@@ -16,17 +14,29 @@
 
 @implementation FirstViewController
 
-@synthesize lockToggleSwitchOutlet;
+@synthesize locktop;
+@synthesize LockButtonOutlet;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     recievedData = [[NSMutableData alloc]init];
     
-//    NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
-//    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/" :nil delegate:self];
+    
     
 }
+
+
+-(void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    if(self.LockButtonOutlet.on){
+        [self showLocked];
+    }else{
+        [self showUnlocked];
+    }
+
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -43,16 +53,26 @@
     
 }
 
-- (IBAction)lockToggleSwitchAction:(id)sender {
+- (IBAction)LockButtonAction:(id)sender{
+    
+    //ok just track a boolen...probably by extending the button class...
+    
+    
+    
+    NSLog(@"toggleState is %d", self.LockButtonOutlet.on);
     
     
     NSString *command;
-    if(lockToggleSwitchOutlet.on){
+    if(self.LockButtonOutlet.on){
+        [self showLocked];
         command = @"l";
     }else{
         command = @"u";
+        [self showUnlocked];
+
     }
     
+
     
     //later this will be something more secure...like a salted hash of some auth string...
     NSString *myDeviceToken = [[UserSettings userSettings]deviceToken];
@@ -95,11 +115,18 @@
     if(err){
         NSLog(@"thrr was err: %@", err);
     }
-    NSString *lockState = [jsonResponse objectForKey:@"lockstate"];
-    if([lockState isEqualToString:@"false"]){
-        self.lockToggleSwitchOutlet.on = false;
-    }else if([lockState isEqualToString:@"true"]){
-        self.lockToggleSwitchOutlet.on = true;
+    NSString *postedLockState = [jsonResponse objectForKey:@"lockstate"];
+    
+    //this will need to be fixed...move to a toggle lock type thingie...
+    
+    
+
+    if([postedLockState isEqualToString:@"false"]){
+        self.LockButtonOutlet.on = false;
+        [self showUnlocked];
+    }else if([postedLockState isEqualToString:@"true"]){
+        self.LockButtonOutlet.on = true;
+        [self showLocked];
     }
     
     //clear recievedData so its ready for next toggle....
@@ -115,12 +142,59 @@
     
     NSString *lockState = [extra objectForKey:@"lockstate"];
     
+
     if([lockState isEqualToString:@"false"]){
-        lockToggleSwitchOutlet.on = false;
+        self.LockButtonOutlet.on = false;
     }else if([lockState isEqualToString:@"true"]){
-        lockToggleSwitchOutlet.on = true;
+        self.LockButtonOutlet.on = true;
     }
     
 }
+
+
+
+
+-(void)showUnlocked{
+    
+       
+    locktop.layer.masksToBounds = NO;
+    locktop.layer.anchorPoint = CGPointMake(0.0f, 0.5f);
+    locktop.layer.position = CGPointMake(117, 176);
+
+    
+    [UIView animateWithDuration:1 animations:^{
+        CATransform3D t = CATransform3DIdentity;
+        
+        t = CATransform3DRotate(t, M_PI, 0.0f, 1.0f, 0.0f);
+        
+        locktop.layer.transform = t;
+        
+    }];
+    
+}
+
+-(void)showLocked{
+    
+  
+    
+    locktop.layer.masksToBounds = NO;
+    locktop.layer.anchorPoint = CGPointMake(0.0f, 0.5f);
+    locktop.layer.position = CGPointMake(117,176);
+    
+
+    
+    [UIView animateWithDuration:1 animations:^{
+        CATransform3D t = CATransform3DIdentity;
+        
+        t = CATransform3DRotate(t, M_PI, 0.0f, 0.0f, 0.0f);
+        
+        locktop.layer.transform = t;
+        
+        
+    }];
+    
+}
+
+
 
 @end

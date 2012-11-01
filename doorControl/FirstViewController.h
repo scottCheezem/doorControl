@@ -7,14 +7,32 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
+#import "NSMutableURLRequest+sendPost.h"
+#import "UserSettings.h"
+#import "LockButton.h"
+
 
 @interface FirstViewController : UIViewController{
     NSMutableData *recievedData;
-
 }
 
 -(void)processesMessage:(NSDictionary *)pushInfo;
-- (IBAction)lockToggleSwitchAction:(id)sender;
-@property (weak, nonatomic) IBOutlet UISwitch *lockToggleSwitchOutlet;
+
+@property (weak, nonatomic) IBOutlet UIView *locktop;
+
+
+
+
+- (IBAction)LockButtonAction:(id)sender;
+
+
+@property (weak, nonatomic) IBOutlet LockButton *LockButtonOutlet;
+
+
+
+
+
+
 
 @end
