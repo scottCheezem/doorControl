@@ -16,7 +16,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="499"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eie-SA-6Ny">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eie-SA-6Ny" customClass="LockButton">
                                 <rect key="frame" x="96" y="213" width="129" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -28,7 +28,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="LockToggleAction:" destination="2" eventType="touchUpInside" id="hVH-Ne-SvC"/>
+                                    <action selector="LockButtonAction:" destination="2" eventType="touchUpInside" id="Suy-Fz-8b4"/>
                                 </connections>
                             </button>
                             <view autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Na7-yY-Ven">
@@ -47,6 +47,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="First" image="first" id="7"/>
                     <connections>
+                        <outlet property="LockButtonOutlet" destination="eie-SA-6Ny" id="L9R-2a-tCM"/>
                         <outlet property="locktop" destination="Na7-yY-Ven" id="6ND-ur-w3J"/>
                     </connections>
                 </viewController>
@@ -115,9 +116,15 @@
         <class className="FirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
             <relationships>
+                <relationship kind="action" name="LockButtonAction:"/>
                 <relationship kind="action" name="LockToggleAction:"/>
+                <relationship kind="outlet" name="LockButtonOutlet" candidateClass="LockButton"/>
+                <relationship kind="outlet" name="lockToggleSwitch" candidateClass="LockButton"/>
                 <relationship kind="outlet" name="locktop" candidateClass="UIView"/>
             </relationships>
+        </class>
+        <class className="LockButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LockButton.h"/>
         </class>
         <class className="SecondViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SecondViewController.h"/>
