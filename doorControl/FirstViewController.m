@@ -146,10 +146,15 @@
     NSLog(@"Locked anchor: %f, %f", locktop.layer.anchorPoint.x, locktop.layer.anchorPoint.y);
     
     
-    //locktop.layer.bounds = CGRectMake(0, 0, locktop.layer.bounds.size.width+100, locktop.layer.bounds.size.height);
-    locktop.layer.anchorPoint = CGPointMake(0.120f, 0.5f);
-    locktop.layer.position = CGPointMake(117, 177);
     
+
+    
+    locktop.layer.masksToBounds = NO;
+    //locktop.layer.anchorPoint = CGPointMake(0.120f, 0.5f);
+    locktop.layer.anchorPoint = CGPointMake(0.0f, 0.5f);
+    locktop.layer.position = CGPointMake(117, 176);
+
+
 //    NSLog(@"dim %f, %f", locktop.bounds.size.width, locktop.bounds.size.height);
     
     [UIView animateWithDuration:1 animations:^{
@@ -159,7 +164,7 @@
         
         locktop.layer.transform = t;
         
-        //        locktop.layer.transform = CATransform3DIdentity;
+
         
         
         
@@ -172,10 +177,13 @@
     NSLog(@"unLocked position : %f, %f", locktop.layer.position.x, locktop.layer.position.y);
     NSLog(@"unlocked anchor: %f, %f", locktop.layer.anchorPoint.x, locktop.layer.anchorPoint.y);
     
-    locktop.layer.anchorPoint = CGPointMake(0.120f, 0.5f);
-    locktop.layer.position = CGPointMake(119,177);
     
-//    NSLog(@"dim %f, %f", locktop.bounds.size.width, locktop.bounds.size.height);
+        locktop.layer.masksToBounds = NO;
+    //locktop.layer.anchorPoint = CGPointMake(0.120f, 0.5f);
+    locktop.layer.anchorPoint = CGPointMake(0.0f, 0.5f);
+    locktop.layer.position = CGPointMake(117,176);
+    
+
     
     [UIView animateWithDuration:1 animations:^{
         CATransform3D t = CATransform3DIdentity;
@@ -183,9 +191,6 @@
         t = CATransform3DRotate(t, M_PI, 0.0f, 0.0f, 0.0f);
         
         locktop.layer.transform = t;
-        
-        //        locktop.layer.transform = CATransform3DIdentity;
-        
         
         
     }];

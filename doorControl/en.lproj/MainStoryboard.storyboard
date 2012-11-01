@@ -31,21 +31,28 @@
                                     <action selector="LockToggleAction:" destination="2" eventType="touchUpInside" id="hVH-Ne-SvC"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="lockTop.png" id="Enf-95-gzd">
-                                <rect key="frame" x="108" y="134" width="105" height="85"/>
+                            <view autoresizesSubviews="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Na7-yY-Ven">
+                                <rect key="frame" x="117" y="133" width="86" height="86"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            </imageView>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="lockTop.png" id="Enf-95-gzd">
+                                        <rect key="frame" x="-9" y="0.0" width="105" height="86"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="First" image="first" id="7"/>
                     <connections>
-                        <outlet property="locktop" destination="Enf-95-gzd" id="oRu-9o-GFO"/>
+                        <outlet property="locktop" destination="Na7-yY-Ven" id="6ND-ur-w3J"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="653" y="-138"/>
+            <point key="canvasLocation" x="666" y="-136"/>
         </scene>
         <!--Second View Controller - Second-->
         <scene sceneID="13">
@@ -109,7 +116,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
             <relationships>
                 <relationship kind="action" name="LockToggleAction:"/>
-                <relationship kind="outlet" name="locktop" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="locktop" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="SecondViewController" superclassName="UIViewController">

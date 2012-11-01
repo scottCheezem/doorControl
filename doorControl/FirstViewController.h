@@ -19,7 +19,8 @@
 
 -(void)processesMessage:(NSDictionary *)pushInfo;
 
-@property (weak, nonatomic) IBOutlet UIImageView *locktop;
+@property (weak, nonatomic) IBOutlet UIView *locktop;
+
 
 - (IBAction)LockToggleAction:(id)sender;
 
