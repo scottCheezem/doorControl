@@ -6,6 +6,11 @@
 //  Copyright (c) 2012 cse4471. All rights reserved.
 //
 
+
+#define SECURE_SEERVER_ADDRESS @"https://www.theroyalwe.net/~doorcontrol/"
+#define SERVER_ADDRESS @"http://doorcontrol.theroyalwe.net/"
+
+
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import "NSMutableURLRequest+sendPost.h"

@@ -53,7 +53,7 @@
     FirstViewController *fc = [((UITabBarController*)self.window.rootViewController).viewControllers objectAtIndex:0];
     
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
-    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/" :nil delegate:fc];
+    [postRequest sendPost:SECURE_SEERVER_ADDRESS :nil delegate:fc];
     
 }
 
@@ -88,7 +88,9 @@
     //also this kind of post thing, might be best severed as a category
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
     NSString *postString = [NSString stringWithFormat:@"devid=%@&appid=%@&devname=%@", _deviceToken, appid, deviceName];
-    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/registerDevice.php" :postString delegate:nil];
+    NSString *registerDeviceUrl = [NSString stringWithFormat:@"%@%@", SECURE_SEERVER_ADDRESS, @"registerDevice.php"];
+//    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/registerDevice.php" :postString delegate:nil];
+    [postRequest sendPost:registerDeviceUrl :postString delegate:nil];
 
     
     

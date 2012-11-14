@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 cse4471. All rights reserved.
 //
 
+
 #import "FirstViewController.h"
 
 @interface FirstViewController ()
@@ -48,7 +49,7 @@
     
     NSLog(@"view will appear");
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
-    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/" :nil delegate:self];
+    [postRequest sendPost:SECURE_SEERVER_ADDRESS :nil delegate:self];
     
     
 }
@@ -80,15 +81,29 @@
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
     //[postRequest setTimeoutInterval:30];
     NSString *postString = [NSString stringWithFormat:@"c=%@&devToken=%@", command, myDeviceToken];
-    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/index.php" :postString delegate:self];
+    NSString *indexURL = [NSString stringWithFormat:@"%@%@", SECURE_SEERVER_ADDRESS, @"index.php"];
+    [postRequest sendPost:indexURL :postString delegate:self];
     
     
     
 }
 
-
+#pragma mark Connection Delegate Methods
 
 //methods for dealing with returned lockstate response...
+
+
+/*
+ //other delegate methods...
+-(BOOL)connection:(NSURLConnection*)connection canAuthenticateAgainstProtectionSpace:(NSURLProtectionSpace *)protectionSpace{
+
+    return YES;
+}
+
+-(void)connection:(NSURLConnection*)connection didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge{
+    
+}*/
+
 
 -(void)connection:(NSURLConnection*)connection didFailWithError:(NSError *)error{
     
@@ -135,6 +150,10 @@
     
 }
 
+
+
+
+#pragma mark got a push payload
 -(void)processesMessage:(NSDictionary *)pushInfo{
     NSLog(@"processing info : %@", pushInfo);
     
@@ -154,7 +173,7 @@
 }
 
 
-
+#pragma mark Lock Animations
 
 -(void)showUnlocked{
     
