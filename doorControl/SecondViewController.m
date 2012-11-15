@@ -15,8 +15,6 @@
 
 #import "SecondViewController.h"
 
-
-
 @interface SecondViewController ()
 
 @end
@@ -38,12 +36,6 @@ static const UInt8 privateKeyIdentifier[] = "net.theroyalwe.doorControl.privateK
     publicKey = NULL;
     privateKey = NULL;
     
-    //  LOGGING_FACILITY1( keySize == 512 || keySize == 1024 || keySize == 2048, @"%d is an invalid and unsupported key size.", keySize );
-    
-    // First delete current keys.
-    //  [self deleteAsymmetricKeys];
-    
-    // Container dictionaries.
     NSMutableDictionary * privateKeyAttr = [[NSMutableDictionary alloc] init];
     NSMutableDictionary * publicKeyAttr = [[NSMutableDictionary alloc] init];
     NSMutableDictionary * keyPairAttr = [[NSMutableDictionary alloc] init];
@@ -67,53 +59,50 @@ static const UInt8 privateKeyIdentifier[] = "net.theroyalwe.doorControl.privateK
     [keyPairAttr setObject:publicKeyAttr forKey:(__bridge id)kSecPublicKeyAttrs];
     
     // SecKeyGeneratePair returns the SecKeyRefs just for educational purposes.
+
     sanityCheck = SecKeyGeneratePair((__bridge CFDictionaryRef)keyPairAttr, &publicKey, &privateKey);
-    //  LOGGING_FACILITY( sanityCheck == noErr && publicKey != NULL && privateKey != NULL, @"Something really bad went wrong with generating the key pair." );
     if(sanityCheck == noErr  && publicKey != NULL && privateKey != NULL)
     {
         NSLog(@"Successful");
     }
-    //  [privateKeyAttr release];
-    //  [publicKeyAttr release];
-    //  [keyPairAttr release];
 }
 
 -(void)testAsymmetricEncryptionAndDecryption {
-    
-    uint8_t *plainBuffer;
-    uint8_t *cipherBuffer;
-    uint8_t *decryptedBuffer;
-    
-    
-    
-    const char inputString[] = "Mitul bhai and Parth and Devang and Gajendra are iPhone Dev";
+
+    const char inputString[] = "this is a great string to test";
     int len = strlen(inputString);
-    // TODO: this is a hack since i know inputString length will be less than BUFFER_SIZE
+
+    // this is a hack since i know inputString length will be less than BUFFER_SIZE
+    
     if (len > BUFFER_SIZE) len = BUFFER_SIZE-1;
     
+    
+    uint8_t *plainBuffer;
     plainBuffer = (uint8_t *)calloc(BUFFER_SIZE, sizeof(uint8_t));
+    
+    uint8_t *cipherBuffer;
     cipherBuffer = (uint8_t *)calloc(CIPHER_BUFFER_SIZE, sizeof(uint8_t));
+    
+    uint8_t *decryptedBuffer;
     decryptedBuffer = (uint8_t *)calloc(BUFFER_SIZE, sizeof(uint8_t));
+    
     
     strncpy( (char *)plainBuffer, inputString, len);
     
     NSLog(@"init() plainBuffer: %s", plainBuffer);
-    //NSLog(@"init(): sizeof(plainBuffer): %d", sizeof(plainBuffer));
+
     [self encryptWithPublicKey:(UInt8 *)plainBuffer cipherBuffer:cipherBuffer];
     NSLog(@"encrypted data: %s", cipherBuffer);
-    //NSLog(@"init(): sizeof(cipherBuffer): %d", sizeof(cipherBuffer));
+
     [self decryptWithPrivateKey:cipherBuffer plainBuffer:decryptedBuffer];
     NSLog(@"decrypted data: %s", decryptedBuffer);
-    //NSLog(@"init(): sizeof(decryptedBuffer): %d", sizeof(decryptedBuffer));
+
     NSLog(@"====== /second test =======================================");
     
     free(plainBuffer);
     free(cipherBuffer);
     free(decryptedBuffer);
 }
-
-
-
 
 - (void)encryptWithPublicKey:(uint8_t *)plainBuffer cipherBuffer:(uint8_t *)cipherBuffer{
     
@@ -127,46 +116,29 @@ static const UInt8 privateKeyIdentifier[] = "net.theroyalwe.doorControl.privateK
     size_t cipherBufferSize = CIPHER_BUFFER_SIZE;
     
     NSLog(@"SecKeyGetBlockSize() public = %lu", SecKeyGetBlockSize([self getPublicKeyRef]));
-    //  Error handling
-    // Encrypt using the public.
-    status = SecKeyEncrypt([self getPublicKeyRef],
-                           PADDING,
-                           plainBuffer,
-                           plainBufferSize,
-                           &cipherBuffer[0],
-                           &cipherBufferSize
-                           );
+
+    status = SecKeyEncrypt([self getPublicKeyRef],PADDING,plainBuffer,plainBufferSize,&cipherBuffer[0],&cipherBufferSize);
     NSLog(@"encryption result code: %ld (size: %lu)", status, cipherBufferSize);
     NSLog(@"encrypted text: %s", cipherBuffer);
 }
-
 
 - (void)decryptWithPrivateKey:(uint8_t *)cipherBuffer plainBuffer:(uint8_t *)plainBuffer{
     OSStatus status = noErr;
     
     size_t cipherBufferSize = strlen((char *)cipherBuffer);
     
-    NSLog(@"decryptWithPrivateKey: length of buffer: %lu", BUFFER_SIZE);
-    NSLog(@"decryptWithPrivateKey: length of input: %lu", cipherBufferSize);
+//    NSLog(@"decryptWithPrivateKey: length of buffer: %lu", BUFFER_SIZE);
+//    NSLog(@"decryptWithPrivateKey: length of input: %lu", cipherBufferSize);
     
     // DECRYPTION
     size_t plainBufferSize = BUFFER_SIZE;
     
     //  Error handling
-    status = SecKeyDecrypt([self getPrivateKeyRef],
-                           PADDING,
-                           &cipherBuffer[0],
-                           cipherBufferSize,
-                           &plainBuffer[0],
-                           &plainBufferSize
-                           );
+    status = SecKeyDecrypt([self getPrivateKeyRef],PADDING,&cipherBuffer[0],cipherBufferSize,&plainBuffer[0],&plainBufferSize);
     NSLog(@"decryption result code: %ld (size: %lu)", status, plainBufferSize);
     NSLog(@"FINAL decrypted text: %s", plainBuffer);
     
 }
-
-
-
 
 -(SecKeyRef)getPrivateKeyRef {
     OSStatus resultCode = noErr;
@@ -232,16 +204,34 @@ static const UInt8 privateKeyIdentifier[] = "net.theroyalwe.doorControl.privateK
     return publicKeyReference;
 }
 
-
-
-- (void)viewDidLoad
-{
+-(void)viewDidLoad{
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    privateTag = [[NSData alloc] initWithBytes:privateKeyIdentifier length:sizeof(privateKeyIdentifier)];
+    publicTag = [[NSData alloc] initWithBytes:publicKeyIdentifier length:sizeof(publicKeyIdentifier)];
+    [self generateKeyPair:1024];
+    NSLog(@"publickey: %@", publicKey);
+    NSString *testString = @"Hello world!";
+    
+    uint8_t *cipherBuffer;
+    cipherBuffer = (uint8_t *)calloc(CIPHER_BUFFER_SIZE, sizeof(uint8_t));
+    
+    uint8_t *plainBuffer = (uint8_t*)calloc(CIPHER_BUFFER_SIZE, sizeof(uint8_t));
+    
+    
+    
+    [self encryptWithPublicKey:(uint8_t *)[testString UTF8String] cipherBuffer:cipherBuffer];
+    
+    
+    
+    [self decryptWithPrivateKey:cipherBuffer plainBuffer:plainBuffer];
+    
+    NSLog(@"then there was this...%s",plainBuffer);
+    
+    
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
