@@ -49,7 +49,8 @@
     
     NSLog(@"view will appear");
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
-    [postRequest sendPost:SECURE_SEERVER_ADDRESS :nil delegate:self];
+    NSString *statusUrl = [NSString stringWithFormat:@"%@%@", SECURE_SEERVER_ADDRESS, @"status.php"];
+    [postRequest sendPost:statusUrl :nil delegate:self];
     
     
 }
@@ -81,7 +82,7 @@
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
     //[postRequest setTimeoutInterval:30];
     NSString *postString = [NSString stringWithFormat:@"c=%@&devToken=%@", command, myDeviceToken];
-    NSString *indexURL = [NSString stringWithFormat:@"%@%@", SECURE_SEERVER_ADDRESS, @"index.php"];
+    NSString *indexURL = [NSString stringWithFormat:@"%@%@", SECURE_SEERVER_ADDRESS, @"status.php"];
     [postRequest sendPost:indexURL :postString delegate:self];
     
     
