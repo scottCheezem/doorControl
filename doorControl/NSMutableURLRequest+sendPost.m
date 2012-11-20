@@ -15,16 +15,15 @@
     
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]initWithURL:url ];
     if(postString){
-        //NSLog(@"postString is %@", postString);
+        NSLog(@"postString is %@", postString);
         [postRequest setHTTPMethod:@"POST"];
-        //NSString *postString = [[NSString alloc]initWithFormat:@"showid=%@", showdetailsId];
         [postRequest setValue:[NSString stringWithFormat:@"%d", postString.length] forHTTPHeaderField:@"Content-length"];
         [postRequest setHTTPBody:[postString dataUsingEncoding:NSUTF8StringEncoding]];
         postRequest.timeoutInterval = 10;
         
     }
 
-    //NSLog(@"sending post %@", postRequest);
+    NSLog(@"sending post %@", postRequest);
     [[NSURLConnection alloc]initWithRequest:postRequest delegate:delegate];
 }
 @end

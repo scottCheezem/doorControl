@@ -125,7 +125,7 @@
     NSError *err;
     
     NSLog(@"finished loading");
-    //NSLog(@"Recieved some data!!! %@", recievedData);
+    NSLog(@"Recieved some data!!! %@", recievedData);
     NSLog(@"data: %@", [[NSString alloc]initWithData:recievedData encoding:NSUTF8StringEncoding]);
     NSDictionary* jsonResponse = [NSJSONSerialization JSONObjectWithData:recievedData options:kNilOptions error:&err];
     if(err){
