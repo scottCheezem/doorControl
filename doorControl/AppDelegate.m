@@ -54,7 +54,13 @@
     
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
     NSString *statusUrl = [NSString stringWithFormat:@"%@%@", SECURE_SEERVER_ADDRESS, @"status.php"];
-    [postRequest sendPost:statusUrl :nil delegate:fc];
+    NSString *myDeviceToken = [[UserSettings userSettings]deviceToken];
+    NSString *postString = [NSString stringWithFormat:@"&devToken=%@", myDeviceToken];
+    [postRequest sendPost:statusUrl :postString delegate:fc];
+    
+    
+    
+    
     
 }
 
@@ -90,10 +96,6 @@
     NSString *registerDeviceUrl = [NSString stringWithFormat:@"%@%@", SECURE_SEERVER_ADDRESS, @"registerDevice.php"];
     [postRequest sendPost:registerDeviceUrl :postString delegate:nil];
 
-    
-    
-    
-    
     
 }
 

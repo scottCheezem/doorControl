@@ -45,7 +45,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="7"/>
+                    <tabBarItem key="tabBarItem" title="Lock" image="first" id="7"/>
                     <connections>
                         <outlet property="LockButtonOutlet" destination="eie-SA-6Ny" id="L9R-2a-tCM"/>
                         <outlet property="locktop" destination="Na7-yY-Ven" id="6ND-ur-w3J"/>
@@ -54,21 +54,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="666" y="-136"/>
-        </scene>
-        <!--View Controller - Second-->
-        <scene sceneID="13">
-            <objects>
-                <viewController title="Second" id="3" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="17">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="6"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="12" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="653" y="498"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="15">
@@ -83,11 +68,42 @@
                     </tabBar>
                     <connections>
                         <segue destination="2" kind="relationship" relationship="viewControllers" id="26"/>
+                        <segue destination="p60-VU-odS" kind="relationship" relationship="viewControllers" id="JTJ-Xf-8nc"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="14" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="132" y="180"/>
+        </scene>
+        <!--Table View Controller - Devices-->
+        <scene sceneID="G2k-u5-BOO">
+            <objects>
+                <tableViewController id="p60-VU-odS" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="d1O-CG-J5f">
+                        <rect key="frame" x="0.0" y="20" width="320" height="411"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="rqX-6H-fBG">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="p60-VU-odS" id="zoM-rx-jpV"/>
+                            <outlet property="delegate" destination="p60-VU-odS" id="tYV-JK-1Me"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Devices" id="HXd-FS-L6m"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VUf-ly-GBi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="661" y="578"/>
         </scene>
     </scenes>
     <resources>
@@ -95,8 +111,20 @@
         <image name="first" width="16" height="16"/>
         <image name="lockTop.png" width="164" height="140"/>
         <image name="lockbottom.png" width="198" height="118"/>
-        <image name="second" width="16" height="16"/>
     </resources>
+    <classes>
+        <class className="FirstViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="LockButtonAction:"/>
+                <relationship kind="outlet" name="LockButtonOutlet" candidateClass="LockButton"/>
+                <relationship kind="outlet" name="locktop" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="LockButton" superclassName="UIButton">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LockButton.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

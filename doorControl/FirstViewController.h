@@ -35,6 +35,7 @@
 @property (weak, nonatomic) IBOutlet LockButton *LockButtonOutlet;
 
 
+//@property (weak, nonatomic) IBOutlet UIView *gaurdView;
 
 
 

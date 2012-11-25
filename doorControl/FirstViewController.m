@@ -17,13 +17,18 @@
 
 @synthesize locktop;
 @synthesize LockButtonOutlet;
+//@synthesize gaurdView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     recievedData = [[NSMutableData alloc]init];
     
+//    NSMutableURLRequest *authPostRequest = [[NSMutableURLRequest alloc]init];
+//    NSString *deviceListUrl = [NSString stringWithFormat:@"%@%@", SECURE_SEERVER_ADDRESS, @"admin/deviceList.php"];
+//    [authPostRequest sendPostBasicAuth:deviceListUrl :@"user" :@"5p1d3r" :nil delegate:self];
     
+
     
 }
 
@@ -50,7 +55,9 @@
     NSLog(@"view will appear");
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
     NSString *statusUrl = [NSString stringWithFormat:@"%@%@", SECURE_SEERVER_ADDRESS, @"status.php"];
-    [postRequest sendPost:statusUrl :nil delegate:self];
+    NSString *myDeviceToken = [[UserSettings userSettings]deviceToken];
+    NSString *postString = [NSString stringWithFormat:@"&devToken=%@", myDeviceToken];
+    [postRequest sendPost:statusUrl :postString delegate:self];
     
     
 }
@@ -132,7 +139,8 @@
         NSLog(@"thrr was err: %@", err);
     }
     NSString *postedLockState = [jsonResponse objectForKey:@"lockstate"];
-    
+    NSString *isAuthed = [jsonResponse objectForKey:@"isAuthed"];
+    NSString *isOwner = [jsonResponse objectForKey:@"isOwner"];
     //this will need to be fixed...move to a toggle lock type thingie...
     
     
@@ -143,6 +151,17 @@
     }else if([postedLockState isEqualToString:@"true"]){
         self.LockButtonOutlet.on = true;
         [self showLocked];
+    }
+    
+    if([isAuthed isEqualToString:@"false"]){
+        LockButtonOutlet.enabled = NO;
+    }else{
+        LockButtonOutlet.enabled = YES;
+    }
+    if ([isOwner isEqualToString:@"false"]) {
+        [self hideTheTabBarWithAnimation:YES];
+    }else{
+        [self showTheTabBarWithAnimation:YES];
     }
     
     //clear recievedData so its ready for next toggle....
@@ -162,6 +181,17 @@
     
     NSString *lockState = [extra objectForKey:@"lockstate"];
     
+    NSString *isAuthed = [extra objectForKey:@"isAuthed"];
+    
+    
+    
+    if(isAuthed!=nil){
+        if([isAuthed isEqualToString:@"false"]){
+            LockButtonOutlet.enabled = NO;
+        }else{
+            LockButtonOutlet.enabled = YES;
+        }
+    }
 
     if([lockState isEqualToString:@"false"]){
         self.LockButtonOutlet.on = false;
@@ -216,7 +246,34 @@
     }];
     
 }
+#pragma mark hide/showTabBar
+- (void) hideTheTabBarWithAnimation:(BOOL) withAnimation {
+    if (NO == withAnimation) {
+        [self.tabBarController.tabBar setHidden:YES];
+    } else {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDelegate:nil];
+        [UIView setAnimationDuration:0.75];
+        
+        [self.tabBarController.tabBar setAlpha:0.0];
+        
+        [UIView commitAnimations];
+    }
+}
 
+- (void) showTheTabBarWithAnimation:(BOOL) withAnimation {
+    if (NO == withAnimation) {
+        [self.tabBarController.tabBar setHidden:NO];
+    } else {
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDelegate:nil];
+        [UIView setAnimationDuration:0.75];
+        
+        [self.tabBarController.tabBar setAlpha:1.0];
+        
+        [UIView commitAnimations];
+    }
+}
 
 
 @end
