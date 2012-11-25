@@ -17,13 +17,18 @@
 
 @synthesize locktop;
 @synthesize LockButtonOutlet;
+//@synthesize gaurdView;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     recievedData = [[NSMutableData alloc]init];
     
+//    NSMutableURLRequest *authPostRequest = [[NSMutableURLRequest alloc]init];
+//    NSString *deviceListUrl = [NSString stringWithFormat:@"%@%@", SECURE_SEERVER_ADDRESS, @"admin/deviceList.php"];
+//    [authPostRequest sendPostBasicAuth:deviceListUrl :@"user" :@"5p1d3r" :nil delegate:self];
     
+
     
 }
 
@@ -50,7 +55,9 @@
     NSLog(@"view will appear");
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
     NSString *statusUrl = [NSString stringWithFormat:@"%@%@", SECURE_SEERVER_ADDRESS, @"status.php"];
-    [postRequest sendPost:statusUrl :nil delegate:self];
+    NSString *myDeviceToken = [[UserSettings userSettings]deviceToken];
+    NSString *postString = [NSString stringWithFormat:@"&devToken=%@", myDeviceToken];
+    [postRequest sendPost:statusUrl :postString delegate:self];
     
     
 }
