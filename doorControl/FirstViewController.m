@@ -24,10 +24,6 @@
     [super viewDidLoad];
     recievedData = [[NSMutableData alloc]init];
     
-//    NSMutableURLRequest *authPostRequest = [[NSMutableURLRequest alloc]init];
-//    NSString *deviceListUrl = [NSString stringWithFormat:@"%@%@", SECURE_SEERVER_ADDRESS, @"admin/deviceList.php"];
-//    [authPostRequest sendPostBasicAuth:deviceListUrl :@"user" :@"5p1d3r" :nil delegate:self];
-    
 
     
 }
