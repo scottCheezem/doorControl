@@ -53,7 +53,8 @@
     FirstViewController *fc = [((UITabBarController*)self.window.rootViewController).viewControllers objectAtIndex:0];
     
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
-    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/" :nil delegate:fc];
+    NSString *statusUrl = [NSString stringWithFormat:@"%@%@", SECURE_SEERVER_ADDRESS, @"status.php"];
+    [postRequest sendPost:statusUrl :nil delegate:fc];
     
 }
 
@@ -77,18 +78,17 @@
     
     //can I get the user specified name of the device?
     NSString *deviceName = [[UIDevice currentDevice] name];
-    
+    NSString *deviceType = [[UIDevice currentDevice] model];
     
     [[UserSettings userSettings]setDeviceName:deviceName];
     [[UserSettings userSettings]setDeviceToken:_deviceToken];
     
+    
 	NSLog(@"%@ token for %@ is: %@", deviceName, appid, _deviceToken);
-    //something here to upload the token to our server...
-    //check if we sent the token, so we're not sending it ever time...and possilby haning at activate
-    //also this kind of post thing, might be best severed as a category
     NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
-    NSString *postString = [NSString stringWithFormat:@"devid=%@&appid=%@&devname=%@", _deviceToken, appid, deviceName];
-    [postRequest sendPost:@"http://doorcontrol.theroyalwe.net/registerDevice.php" :postString delegate:nil];
+    NSString *postString = [NSString stringWithFormat:@"devid=%@&appid=%@&devname=%@&devtype=%@", _deviceToken, appid, deviceName, deviceType];
+    NSString *registerDeviceUrl = [NSString stringWithFormat:@"%@%@", SECURE_SEERVER_ADDRESS, @"registerDevice.php"];
+    [postRequest sendPost:registerDeviceUrl :postString delegate:nil];
 
     
     
