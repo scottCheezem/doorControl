@@ -23,7 +23,7 @@
 {
     [super viewDidLoad];
     recievedData = [[NSMutableData alloc]init];
-    
+    [self hideTheTabBarWithAnimation:YES];
 
     
 }
@@ -31,11 +31,11 @@
 
 -(void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    if(self.LockButtonOutlet.on){
-        [self showLocked];
-    }else{
-        [self showUnlocked];
-    }
+//    if(self.LockButtonOutlet.on){
+//        [self showLocked];
+//    }else{
+//        [self showUnlocked];
+//    }
 
 }
 
@@ -69,11 +69,11 @@
     
     NSString *command;
     if(self.LockButtonOutlet.on){
-        [self showLocked];
+        //[self showLocked];
         command = @"l";
     }else{
         command = @"u";
-        [self showUnlocked];
+        //[self showUnlocked];
 
     }
     
@@ -149,15 +149,17 @@
         [self showLocked];
     }
     
-    if([isAuthed isEqualToString:@"false"]){
-        LockButtonOutlet.enabled = NO;
-    }else{
+    if([isAuthed isEqualToString:@"true"]){
         LockButtonOutlet.enabled = YES;
-    }
-    if ([isOwner isEqualToString:@"false"]) {
-        [self hideTheTabBarWithAnimation:YES];
     }else{
+        LockButtonOutlet.enabled = NO;
+    }
+    
+    
+    if ([isOwner isEqualToString:@"true"]) {
         [self showTheTabBarWithAnimation:YES];
+    }else{
+        [self hideTheTabBarWithAnimation:YES];
     }
     
     //clear recievedData so its ready for next toggle....
@@ -182,10 +184,10 @@
     
     
     if(isAuthed!=nil){
-        if([isAuthed isEqualToString:@"false"]){
-            LockButtonOutlet.enabled = NO;
-        }else{
+        if([isAuthed isEqualToString:@"true"]){
             LockButtonOutlet.enabled = YES;
+        }else{
+            LockButtonOutlet.enabled = NO;
         }
     }
 
