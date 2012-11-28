@@ -12,7 +12,7 @@
 
 
 @property(nonatomic, retain)NSString* pid;
-@property(nonatomic, retain)NSString* aid;
+@property(nonatomic)BOOL isAuthed;
 @property(nonatomic)BOOL isOwner;
 @property(nonatomic, retain)NSString* deviceName;
 @property(nonatomic, retain)NSString* deviceType;

@@ -76,6 +76,9 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+	cell.textLabel.text = [[devices objectAtIndex:indexPath.row]deviceName];
+	
+	
     
     return cell;
 }
@@ -162,6 +165,33 @@
     }
     
 
+	NSArray* devicesJson =[jsonResponse objectForKey:@"devices"];
+	
+	for (NSDictionary *jsonDeviceDictioanry in devicesJson){
+		
+		//so you or anyone else can't deauthorized your self from your own handset
+		if(![[jsonDeviceDictioanry objectForKey:@"deviceToken"] isEqualToString:[[UserSettings userSettings]deviceToken]]){
+		
+			doorControlDevice *dcDevice = [[doorControlDevice alloc]init];
+			dcDevice.pid = [jsonDeviceDictioanry objectForKey:@"pid"];
+			dcDevice.deviceName = [jsonDeviceDictioanry objectForKey:@"deviceName"];
+			dcDevice.deviceType = [jsonDeviceDictioanry objectForKey:@"deviceType"];
+			NSNumber *isOwner = (NSNumber*)[jsonDeviceDictioanry objectForKey:@"isOwner"];
+			if(isOwner && [isOwner boolValue]){
+				dcDevice.isOwner = YES;
+			}else{
+				dcDevice.isOwner = NO;
+			}
+			if([[jsonDeviceDictioanry objectForKey:@"pid"] isEqualToString:[jsonDeviceDictioanry objectForKey:@"aid"]] ){
+				dcDevice.isAuthed = YES;
+			}else{
+				dcDevice.isAuthed = NO;
+			}
+			[devices addObject:dcDevice];
+
+		}
+		
+	}
     
     
 	
