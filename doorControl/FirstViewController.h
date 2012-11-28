@@ -7,7 +7,7 @@
 //
 
 
-#define SECURE_SEERVER_ADDRESS @"https://www.theroyalwe.net/~doorcontrol/"
+#define SECURE_SEERVER_ADDRESS @"http://192.168.2.1/"
 #define SERVER_ADDRESS @"http://doorcontrol.theroyalwe.net/"
 
 

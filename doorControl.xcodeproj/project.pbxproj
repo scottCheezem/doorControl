@@ -32,6 +32,8 @@
 		CE681BB8164AFE0F00011B13 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE681BB7164AFE0F00011B13 /* Security.framework */; };
 		CE7B85931662953200A1D12D /* NSData+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7B85921662953200A1D12D /* NSData+Additions.m */; };
 		CEA22E711637064600A658BB /* burshed_metal@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEA22E701637064600A658BB /* burshed_metal@2x.jpg */; };
+		CEE3319E1666A08900F1E233 /* DevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE3319D1666A08900F1E233 /* DevicesTableViewController.m */; };
+		CEE331A61666B46300F1E233 /* doorControlDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE331A51666B46300F1E233 /* doorControlDevice.m */; };
 		CEF3B096161BA87A00D44378 /* NSMutableURLRequest+sendPost.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B095161BA87A00D44378 /* NSMutableURLRequest+sendPost.m */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +71,10 @@
 		CE7B85911662953200A1D12D /* NSData+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Additions.h"; sourceTree = "<group>"; };
 		CE7B85921662953200A1D12D /* NSData+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Additions.m"; sourceTree = "<group>"; };
 		CEA22E701637064600A658BB /* burshed_metal@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "burshed_metal@2x.jpg"; sourceTree = "<group>"; };
+		CEE3319C1666A08900F1E233 /* DevicesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DevicesTableViewController.h; path = ../DevicesTableViewController.h; sourceTree = "<group>"; };
+		CEE3319D1666A08900F1E233 /* DevicesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DevicesTableViewController.m; path = ../DevicesTableViewController.m; sourceTree = "<group>"; };
+		CEE331A41666B46300F1E233 /* doorControlDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = doorControlDevice.h; sourceTree = "<group>"; };
+		CEE331A51666B46300F1E233 /* doorControlDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = doorControlDevice.m; sourceTree = "<group>"; };
 		CEF3B094161BA87A00D44378 /* NSMutableURLRequest+sendPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+sendPost.h"; sourceTree = "<group>"; };
 		CEF3B095161BA87A00D44378 /* NSMutableURLRequest+sendPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+sendPost.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,6 +127,8 @@
 		CE159ADD1614A670005CAB53 /* doorControl */ = {
 			isa = PBXGroup;
 			children = (
+				CEE3319C1666A08900F1E233 /* DevicesTableViewController.h */,
+				CEE3319D1666A08900F1E233 /* DevicesTableViewController.m */,
 				CE7B85911662953200A1D12D /* NSData+Additions.h */,
 				CE7B85921662953200A1D12D /* NSData+Additions.m */,
 				CE159AE61614A670005CAB53 /* AppDelegate.h */,
@@ -128,6 +136,8 @@
 				CEF3B094161BA87A00D44378 /* NSMutableURLRequest+sendPost.h */,
 				CEF3B095161BA87A00D44378 /* NSMutableURLRequest+sendPost.m */,
 				CE159AEF1614A670005CAB53 /* MainStoryboard.storyboard */,
+				CEE331A41666B46300F1E233 /* doorControlDevice.h */,
+				CEE331A51666B46300F1E233 /* doorControlDevice.m */,
 				CE159AF21614A670005CAB53 /* FirstViewController.h */,
 				CE159AF31614A670005CAB53 /* FirstViewController.m */,
 				CE1D57E9163A42880062105A /* UserSettings.h */,
@@ -252,6 +262,8 @@
 				CE1D57EB163A42880062105A /* UserSettings.m in Sources */,
 				CE2BA17D1642EB6100758AFF /* LockButton.m in Sources */,
 				CE7B85931662953200A1D12D /* NSData+Additions.m in Sources */,
+				CEE3319E1666A08900F1E233 /* DevicesTableViewController.m in Sources */,
+				CEE331A61666B46300F1E233 /* doorControlDevice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
