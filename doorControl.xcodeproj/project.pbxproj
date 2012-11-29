@@ -32,6 +32,7 @@
 		CE681BB8164AFE0F00011B13 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE681BB7164AFE0F00011B13 /* Security.framework */; };
 		CE7B85931662953200A1D12D /* NSData+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = CE7B85921662953200A1D12D /* NSData+Additions.m */; };
 		CEA22E711637064600A658BB /* burshed_metal@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEA22E701637064600A658BB /* burshed_metal@2x.jpg */; };
+		CEC42E701666EA1C009F78C6 /* DevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC42E6F1666EA1C009F78C6 /* DevicesTableViewController.m */; };
 		CEF3B096161BA87A00D44378 /* NSMutableURLRequest+sendPost.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B095161BA87A00D44378 /* NSMutableURLRequest+sendPost.m */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,8 @@
 		CE7B85911662953200A1D12D /* NSData+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Additions.h"; sourceTree = "<group>"; };
 		CE7B85921662953200A1D12D /* NSData+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Additions.m"; sourceTree = "<group>"; };
 		CEA22E701637064600A658BB /* burshed_metal@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "burshed_metal@2x.jpg"; sourceTree = "<group>"; };
+		CEC42E6E1666EA1C009F78C6 /* DevicesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DevicesTableViewController.h; sourceTree = "<group>"; };
+		CEC42E6F1666EA1C009F78C6 /* DevicesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesTableViewController.m; sourceTree = "<group>"; };
 		CEF3B094161BA87A00D44378 /* NSMutableURLRequest+sendPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+sendPost.h"; sourceTree = "<group>"; };
 		CEF3B095161BA87A00D44378 /* NSMutableURLRequest+sendPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+sendPost.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,6 +124,8 @@
 		CE159ADD1614A670005CAB53 /* doorControl */ = {
 			isa = PBXGroup;
 			children = (
+				CEC42E6E1666EA1C009F78C6 /* DevicesTableViewController.h */,
+				CEC42E6F1666EA1C009F78C6 /* DevicesTableViewController.m */,
 				CE7B85911662953200A1D12D /* NSData+Additions.h */,
 				CE7B85921662953200A1D12D /* NSData+Additions.m */,
 				CE159AE61614A670005CAB53 /* AppDelegate.h */,
@@ -252,6 +257,7 @@
 				CE1D57EB163A42880062105A /* UserSettings.m in Sources */,
 				CE2BA17D1642EB6100758AFF /* LockButton.m in Sources */,
 				CE7B85931662953200A1D12D /* NSData+Additions.m in Sources */,
+				CEC42E701666EA1C009F78C6 /* DevicesTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

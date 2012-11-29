@@ -133,9 +133,6 @@
         <image name="lockbottom.png" width="198" height="118"/>
     </resources>
     <classes>
-        <class className="DevicesTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DevicesTableViewController.h"/>
-        </class>
         <class className="FirstViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FirstViewController.h"/>
             <relationships>
