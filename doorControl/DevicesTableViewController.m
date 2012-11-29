@@ -72,8 +72,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"deviceCell";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+	    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     // Configure the cell...
 	cell.textLabel.text = [[devices objectAtIndex:indexPath.row]deviceName];
@@ -174,8 +175,8 @@
 		
 			doorControlDevice *dcDevice = [[doorControlDevice alloc]init];
 			dcDevice.pid = [jsonDeviceDictioanry objectForKey:@"pid"];
-			dcDevice.deviceName = [jsonDeviceDictioanry objectForKey:@"deviceName"];
-			dcDevice.deviceType = [jsonDeviceDictioanry objectForKey:@"deviceType"];
+			dcDevice.deviceName = [jsonDeviceDictioanry objectForKey:@"devicename"];
+			dcDevice.deviceType = [jsonDeviceDictioanry objectForKey:@"devicetype"];
 			NSNumber *isOwner = (NSNumber*)[jsonDeviceDictioanry objectForKey:@"isOwner"];
 			if(isOwner && [isOwner boolValue]){
 				dcDevice.isOwner = YES;
@@ -198,7 +199,7 @@
         
     //clear recievedData so its ready for next toggle....
     recievedData = [[NSMutableData alloc]init];
-    
+    [self.tableView reloadData];
     
 }
 
