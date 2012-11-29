@@ -33,6 +33,9 @@
 		CEA22E711637064600A658BB /* burshed_metal@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = CEA22E701637064600A658BB /* burshed_metal@2x.jpg */; };
 		CEC42E701666EA1C009F78C6 /* DevicesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC42E6F1666EA1C009F78C6 /* DevicesTableViewController.m */; };
 		CEC42E741666ED82009F78C6 /* doorControlDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC42E731666ED82009F78C6 /* doorControlDevice.m */; };
+		CEC42E7B1666F5AC009F78C6 /* ipadDevice.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC42E791666F5AC009F78C6 /* ipadDevice.png */; };
+		CEC42E7C1666F5AC009F78C6 /* iphoneDevice.png in Resources */ = {isa = PBXBuildFile; fileRef = CEC42E7A1666F5AC009F78C6 /* iphoneDevice.png */; };
+		CEC42E7F1666F631009F78C6 /* deviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CEC42E7E1666F631009F78C6 /* deviceViewController.m */; };
 		CEF3B096161BA87A00D44378 /* NSMutableURLRequest+sendPost.m in Sources */ = {isa = PBXBuildFile; fileRef = CEF3B095161BA87A00D44378 /* NSMutableURLRequest+sendPost.m */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +77,10 @@
 		CEC42E6F1666EA1C009F78C6 /* DevicesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DevicesTableViewController.m; sourceTree = "<group>"; };
 		CEC42E721666ED82009F78C6 /* doorControlDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = doorControlDevice.h; sourceTree = "<group>"; };
 		CEC42E731666ED82009F78C6 /* doorControlDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = doorControlDevice.m; sourceTree = "<group>"; };
+		CEC42E791666F5AC009F78C6 /* ipadDevice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipadDevice.png; sourceTree = "<group>"; };
+		CEC42E7A1666F5AC009F78C6 /* iphoneDevice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphoneDevice.png; sourceTree = "<group>"; };
+		CEC42E7D1666F631009F78C6 /* deviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = deviceViewController.h; sourceTree = "<group>"; };
+		CEC42E7E1666F631009F78C6 /* deviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = deviceViewController.m; sourceTree = "<group>"; };
 		CEF3B094161BA87A00D44378 /* NSMutableURLRequest+sendPost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+sendPost.h"; sourceTree = "<group>"; };
 		CEF3B095161BA87A00D44378 /* NSMutableURLRequest+sendPost.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+sendPost.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +132,8 @@
 		CE159ADD1614A670005CAB53 /* doorControl */ = {
 			isa = PBXGroup;
 			children = (
+				CEC42E7D1666F631009F78C6 /* deviceViewController.h */,
+				CEC42E7E1666F631009F78C6 /* deviceViewController.m */,
 				CEC42E6E1666EA1C009F78C6 /* DevicesTableViewController.h */,
 				CEC42E6F1666EA1C009F78C6 /* DevicesTableViewController.m */,
 				CE7B85911662953200A1D12D /* NSData+Additions.h */,
@@ -149,6 +158,8 @@
 		CE159ADE1614A670005CAB53 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				CEC42E791666F5AC009F78C6 /* ipadDevice.png */,
+				CEC42E7A1666F5AC009F78C6 /* iphoneDevice.png */,
 				CE159AF51614A670005CAB53 /* first.png */,
 				CE159AF71614A670005CAB53 /* first@2x.png */,
 				CE159AFC1614A670005CAB53 /* second.png */,
@@ -243,6 +254,8 @@
 				CE67C40A1639C52800CB907D /* Default-568h@2x.png in Resources */,
 				CE640708163EDAD7003AC65A /* lockbottom.png in Resources */,
 				CE640709163EDAD7003AC65A /* lockTop.png in Resources */,
+				CEC42E7B1666F5AC009F78C6 /* ipadDevice.png in Resources */,
+				CEC42E7C1666F5AC009F78C6 /* iphoneDevice.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +275,7 @@
 				CE7B85931662953200A1D12D /* NSData+Additions.m in Sources */,
 				CEC42E701666EA1C009F78C6 /* DevicesTableViewController.m in Sources */,
 				CEC42E741666ED82009F78C6 /* doorControlDevice.m in Sources */,
+				CEC42E7F1666F631009F78C6 /* deviceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
