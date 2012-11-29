@@ -11,6 +11,7 @@
 #import "NSMutableURLRequest+sendPost.h"
 #import "doorControlDevice.h"
 #import "deviceViewController.h"
+#import "UserSettings.h"
 
 @interface DevicesTableViewController : UITableViewController<UITableViewDelegate>{
 	NSMutableData *recievedData;

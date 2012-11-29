@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "doorControlDevice.h"
 #import "NSMutableURLRequest+sendPost.h"
-@interface deviceViewController : UIViewController
+@interface deviceViewController : UIViewController{
+	NSMutableData *recievedData;
+}
 	
 @property (weak, nonatomic) IBOutlet UILabel *deviceNameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *deviceTypeImageView;
