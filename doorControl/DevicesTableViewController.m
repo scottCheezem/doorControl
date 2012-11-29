@@ -34,13 +34,17 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	
-	recievedData = [[NSMutableData alloc]init];
-	devices = [[NSMutableArray alloc]init];
 	
 }
 
 -(void)viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
+	
+	
+	recievedData = [[NSMutableData alloc]init];
+	devices = [[NSMutableArray alloc]init];
+
+	
 	
 	NSMutableURLRequest *postRequest = [[NSMutableURLRequest alloc]init];
 	NSString *deviceListUrl = [NSString stringWithFormat:@"%@%@", SECURE_SEERVER_ADDRESS, @"admin/deviceList.php"];
@@ -83,6 +87,17 @@
     
     return cell;
 }
+
+
+#pragma mark segue stuff
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+	deviceViewController *dvc = [segue destinationViewController];
+	dvc.device = [devices objectAtIndex:self.tableView.indexPathForSelectedRow.row];
+	dvc.title = [[devices objectAtIndex:self.tableView.indexPathForSelectedRow.row]deviceName];
+}
+
+
 
 /*
 // Override to support conditional editing of the table view.
@@ -134,6 +149,7 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+		
 }
 
 
@@ -177,6 +193,8 @@
 			dcDevice.pid = [jsonDeviceDictioanry objectForKey:@"pid"];
 			dcDevice.deviceName = [jsonDeviceDictioanry objectForKey:@"devicename"];
 			dcDevice.deviceType = [jsonDeviceDictioanry objectForKey:@"devicetype"];
+			dcDevice.registereTime = [jsonDeviceDictioanry objectForKey:@"registertime"];
+			
 			NSNumber *isOwner = (NSNumber*)[jsonDeviceDictioanry objectForKey:@"isOwner"];
 			if(isOwner && [isOwner boolValue]){
 				dcDevice.isOwner = YES;

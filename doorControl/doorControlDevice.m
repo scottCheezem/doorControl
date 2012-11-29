@@ -11,6 +11,6 @@
 @implementation doorControlDevice
 
 
-@synthesize pid,isAuthed,isOwner,deviceName,deviceType;
+@synthesize pid,isAuthed,isOwner,deviceName,deviceType, registereTime;
 
 @end

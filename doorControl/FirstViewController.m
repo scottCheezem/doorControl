@@ -181,6 +181,7 @@
     
     NSString *isAuthed = [extra objectForKey:@"isAuthed"];
     
+	NSString *isOwner = [extra objectForKey:@"isOwner"];
     
     
     if(isAuthed!=nil){
@@ -190,6 +191,15 @@
             LockButtonOutlet.enabled = NO;
         }
     }
+	
+	
+	if(isOwner!=nil){
+		if ([isOwner isEqualToString:@"true"]) {
+			[self showTheTabBarWithAnimation:YES];
+		}else{
+			[self hideTheTabBarWithAnimation:YES];
+		}
+	}
 
     if([lockState isEqualToString:@"false"]){
         self.LockButtonOutlet.on = false;

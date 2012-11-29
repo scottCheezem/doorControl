@@ -10,10 +10,12 @@
 #import "FirstViewController.h"
 #import "NSMutableURLRequest+sendPost.h"
 #import "doorControlDevice.h"
+#import "deviceViewController.h"
 
 @interface DevicesTableViewController : UITableViewController<UITableViewDelegate>{
 	NSMutableData *recievedData;
 	NSMutableArray *devices;
+
 }
 
 @end

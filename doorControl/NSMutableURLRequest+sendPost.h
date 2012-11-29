@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "NSData+Additions.h"
 
+
+
+#define SECURE_SEERVER_ADDRESS @"http://192.168.2.1/"
+#define SERVER_ADDRESS @"http://doorcontrol.theroyalwe.net/"
+
+
 @interface NSMutableURLRequest (sendPost)
 -(void)sendPost:(NSString*)urlString :(NSString*)postString delegate:(id)delegate;
 -(void)sendPostBasicAuth:(NSString*)urlString :(NSString*)postString :(NSString*)userName :(NSString*)passWord delegate:(id)delegate;

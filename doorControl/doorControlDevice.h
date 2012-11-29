@@ -16,5 +16,6 @@
 @property(nonatomic)BOOL isOwner;
 @property(nonatomic, retain)NSString* deviceName;
 @property(nonatomic, retain)NSString* deviceType;
+@property(nonatomic, retain)NSString* registereTime;
 
 @end
